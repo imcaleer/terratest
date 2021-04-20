@@ -29,8 +29,12 @@ resource "aws_lambda_function" "lambda_function" {
   ] 
 }
 
-resource "aws_s3_bucket_notification" "my-trigger" {
+resource "aws_s3_bucket" "upload_bucket" {
     bucket = "uploads-imca"
+}
+
+resource "aws_s3_bucket_notification" "my-trigger" {
+    bucket = aws_s3_bucket.upload_bucket.bucket
 
     lambda_function {
         lambda_function_arn = aws_lambda_function.lambda_function.arn
@@ -102,5 +106,5 @@ resource "aws_iam_role_policy_attachment" "lambda_CloudWatchLogs" {
 
 resource "aws_iam_role_policy_attachment" "lambda_S3ReadOnly" {
   role       = aws_iam_role.iam_for_lambda.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
 }
