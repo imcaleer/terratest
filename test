@@ -1,0 +1,1 @@
+curl -X POST -H "Content-Type: application/json" -d '{"data":"text I want to encrypt"}' https://tfgk013jab.execute-api.eu-west-1.amazonaws.com/Prod/encrypt
