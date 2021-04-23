@@ -43,6 +43,20 @@ resource "aws_s3_bucket_notification" "my-trigger" {
     }
 }
 
+resource "aws_dynamodb_table" "basic-dynamodb-table" {
+  name = "employees"
+  hash_key = "emp_id"
+  billing_mode   = "PROVISIONED"
+  read_capacity  = 5
+  write_capacity = 5
+
+  attribute {
+    name = "emp_id"
+    type = "S"
+  }
+
+}
+
 resource "aws_lambda_permission" "test" {
   statement_id  = "AllowS3Invoke"
   action        = "lambda:InvokeFunction"
