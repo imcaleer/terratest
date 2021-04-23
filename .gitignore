@@ -1,6 +1,11 @@
-terraform.tfstate
-terraform.tfstate.backup
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
 lambda.zip
-.terraform/
-.terraform.lock.hcl
-.gitignore
+
+# Local .terraform ditrectories
+**/.terraform/*
+**/.terragrunt-cache/*
+
+crash.log
