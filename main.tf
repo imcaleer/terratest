@@ -17,7 +17,7 @@ variable "handler" { default = "lambda.lambda_handler" }
 variable "runtime" { default = "python3.8" }
 
 resource "aws_s3_bucket" "lambda_bucket" {
-  bucket = "uploads-imca-lambda-2"
+  bucket = "uploads-imca-lambda-1"
 }
 
 data "archive_file" "zipit" {
@@ -52,7 +52,7 @@ resource "aws_lambda_function" "lambda_function" {
 }
 
 resource "aws_s3_bucket" "upload_bucket" {
-  bucket = "imca-source-2"
+  bucket = "imca-source-1"
 }
 
 resource "aws_s3_bucket_notification" "my-trigger" {
