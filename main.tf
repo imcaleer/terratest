@@ -16,6 +16,22 @@ variable "function_name" { default = "mytestlambda" }
 variable "handler" { default = "lambda.lambda_handler" }
 variable "runtime" { default = "python3.8" }
 
+resource "aws_dynamodb_table" "basic-dynamodb-table" {
+  name           = "employees"
+  hash_key       = "emp_id"
+  billing_mode   = "PROVISIONED"
+  read_capacity  = 5
+  write_capacity = 5
+
+  attribute {
+    name = "emp_id"
+    type = "S"
+  }
+
+}
+
+
+
 resource "aws_lambda_function" "lambda_function" {
   role             = aws_iam_role.iam_for_lambda.arn
   handler          = var.handler
